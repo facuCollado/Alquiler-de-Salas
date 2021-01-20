@@ -8,20 +8,155 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Alquiler_Salas.Clases;
 namespace Alquiler_Salas
 {
     public partial class FrmAlquilar : Form
     {
         //iniciamos la conexion
         OleDbConnection con = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = C:\Users\Usuario\Documents\Dev\Desktop\Alquiler Salas\Alquiler Salas\SalasDB copia.accdb");
-        //var global para determinar que debe consultar primero la fecha
+        List<Salas> salas = new List<Salas>(); //almacenará una lista de objetos salas
+        List<Salas_Pedidas> salas_pedidas = new List<Salas_Pedidas>(); //almacenará una lista de objetos salas_pedidas
+        //var para determinar que debe consultar primero la fecha
         Boolean consulta = false;
         public FrmAlquilar()
         {
             InitializeComponent();
         }
+        private void FrmAlquilar_Load(object sender, EventArgs e)
+        {
+            delete_yesterdayRooms();
+            loadTablaSalas();
+            loadTablaSalasPedidas();
 
+        }
+
+        public void loadTablaSalas()
+        {
+            con.Open();
+            //leo todos los datos de la tabla
+            OleDbCommand cmd = new OleDbCommand("SELECT * FROM Salas", con);
+            //creo un reader, que permite ejecutar la consulta
+            OleDbDataReader r = cmd.ExecuteReader();
+
+            int col = r.FieldCount; //traigo el num de cant de columnas
+
+            if (r.HasRows)//si tiene una o más filas
+            {
+                while (r.Read()) //recorro todas las filas
+                {
+                    Salas s = new Salas();
+                    s.Id = r.GetInt32(0);
+                    s.Sala = r.GetString(1);
+                    s.Capacidad = r.GetInt32(2);
+
+                    salas.Add(s); //le agrego los objetos a la List
+                }
+                startTablaSalas(); //inicializo la tabla
+                fillTablaSalas();//Muestro los datos
+            }
+            else
+            {
+                MessageBox.Show("No hay datos en la BD");
+            }
+            r.Close();
+
+            con.Close();
+        }
+
+        public void loadTablaSalasPedidas()
+        {
+            con.Open();
+            //leo todos los datos de la tabla
+            OleDbCommand cmd = new OleDbCommand("SELECT * FROM Salas_Pedidas", con);
+            //creo un reader, que permite ejecutar la consulta
+            OleDbDataReader r = cmd.ExecuteReader();
+
+            int col = r.FieldCount; //traigo el num de cant de columnas
+
+            if (r.HasRows)//si tiene una o más filas
+            {
+                while (r.Read()) //recorro todas las filas
+                {
+                    Salas_Pedidas sp = new Salas_Pedidas();
+                    sp.Id = r.GetInt32(0);
+                    sp.Sala = r.GetString(1);
+                    sp.Fecha = r.GetString(2);
+
+                    salas_pedidas.Add(sp); //le agrego los objetos a la List
+                }
+                startTablaSalasPedidas(); //inicializo la tabla
+                fillTablaSalasPedidas();//Muestro los datos
+            }
+            else
+            {
+                MessageBox.Show("No hay datos en la BD");
+            }
+            r.Close();
+            con.Close();
+        }
+
+        public void startTablaSalas()
+        {
+            //Inicializo la grilla
+            tablaSalas.AllowUserToAddRows = false;
+            tablaSalas.AllowUserToDeleteRows = false;
+            tablaSalas.AllowUserToOrderColumns = false;
+            tablaSalas.ReadOnly = true;
+            tablaSalas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            tablaSalas.EditMode = DataGridViewEditMode.EditProgrammatically;
+            tablaSalas.MultiSelect = false;
+            tablaSalas.AutoResizeColumns();
+            tablaSalas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            tablaSalas.Columns.Add("id", "ID");
+            tablaSalas.Columns.Add("sala", "Sala");
+            tablaSalas.Columns.Add("capacidad", "Capacidad");
+        }
+
+        public void fillTablaSalas()
+        {
+            for (int i = 0; i < salas.Count(); i++)
+            {
+                tablaSalas.Rows.Add
+                (salas[i].Id,
+                salas[i].Sala,
+                salas[i].Capacidad
+                    );
+            }
+            salas.Clear();
+        }
+
+        public void startTablaSalasPedidas()
+        {
+            //Inicializo la grilla
+            tablaSalasPedidas.AllowUserToAddRows = false;
+            tablaSalasPedidas.AllowUserToDeleteRows = false;
+            tablaSalasPedidas.AllowUserToOrderColumns = false;
+            tablaSalasPedidas.ReadOnly = true;
+            tablaSalasPedidas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            tablaSalasPedidas.EditMode = DataGridViewEditMode.EditProgrammatically;
+            tablaSalasPedidas.MultiSelect = false;
+            tablaSalasPedidas.AutoResizeColumns();
+            tablaSalasPedidas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            tablaSalasPedidas.Columns.Add("id", "ID");
+            tablaSalasPedidas.Columns.Add("sala", "Sala");
+            tablaSalasPedidas.Columns.Add("fecha", "Fecha");
+        }
+
+        public void fillTablaSalasPedidas()
+        {
+            for (int i = 0; i < salas_pedidas.Count(); i++)
+            {
+                tablaSalasPedidas.Rows.Add
+                (salas_pedidas[i].Id,
+                salas_pedidas[i].Sala,
+                salas_pedidas[i].Fecha
+                    );
+            }
+            salas_pedidas.Clear();
+        }
         private void Btn_back_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -37,34 +172,32 @@ namespace Alquiler_Salas
             this.tableAdapterManager.UpdateAll(this.salasDB_copiaDataSet);
 
         }
-
-        private void FrmAlquilar_Load(object sender, EventArgs e)
+        public void delete_yesterdayRooms()
         {
-            // TODO: esta línea de código carga datos en la tabla 'salasDB_copiaDataSet.Salas_Pedidas' Puede moverla o quitarla según sea necesario.
-            this.salasTableAdapter.Fill(this.salasDB_copiaDataSet.Salas);
-            // TODO: esta línea de código carga datos en la tabla 'salasDB_copiaDataSet.Salas_Pedidas' Puede moverla o quitarla según sea necesario.
-            this.salas_PedidasTableAdapter.Fill(this.salasDB_copiaDataSet.Salas_Pedidas);
+            //con esto elimino de las salas pedidas las que fueron reservadas el día anterior, para que esten disponibles nuevamente
+            con.Open();
+            DateTime today = DateTime.Now.AddDays(-1);
+            String yesterday = today.ToString("dd/MM/yyyy");
+            String strQuery = "DELETE FROM Salas_Pedidas WHERE Fecha = @yesterday";
+            OleDbCommand cmd = new OleDbCommand(strQuery, con);
+            //Establecemos los parámetros que se utilizarán en el comando Insert
+            cmd.Parameters.AddWithValue("yesterday", yesterday);
 
-            bool estaConectado = false;
             try
             {
-                con.Open();
-                estaConectado = true;
+                cmd.ExecuteNonQuery(); //Ejecutamos el query
             }
-            catch (Exception ex)
+            catch (OleDbException ex)
             {
-                MessageBox.Show("No se pudo conectar: \n" + ex);
-                estaConectado = false;
+                MessageBox.Show("Error al insertar los datos: " + ex);
             }
-
-
+            con.Close();
         }
-
-
+ 
         private void salasDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //selecciono una fila para llenar el contenido de que sala es elegida
-            txtRoom.Text = salasDataGridView.CurrentRow.Cells[1].Value.ToString();
+            //selecciono una fila para llenar el txt de la sala que sala es elegida
+            txtRoom.Text = tablaSalas.CurrentRow.Cells[1].Value.ToString();
         }
 
         private void btnConsult_Click(object sender, EventArgs e)
@@ -82,7 +215,7 @@ namespace Alquiler_Salas
                 String parseDate = DateTime.Parse(queryDate).ToString();
 
                 int disponible = 0; //bool para saber si esta completamente libre esa sala
-                foreach (DataGridViewRow row in salas_PedidasDataGridView.Rows)
+                foreach (DataGridViewRow row in tablaSalasPedidas.Rows)
                 {
                     if (Convert.ToString(row.Cells[1].Value) == sala && (Convert.ToString(row.Cells[2].Value)) == parseDate)
                     {
@@ -95,7 +228,7 @@ namespace Alquiler_Salas
                     else
                     {
                         disponible += 1;
-                        row.DefaultCellStyle.BackColor = Color.White;
+                        row.DefaultCellStyle.BackColor = Color.MediumOrchid;
                     }
                 }
                 if (disponible != 0)
@@ -103,8 +236,7 @@ namespace Alquiler_Salas
                     MessageBox.Show("Sala disponible en esa fecha.");
                     btn_continue.Enabled = true;
                 }
-            }
-            
+            }   
         }
 
         private void btn_continue_Click(object sender, EventArgs e)
@@ -116,8 +248,8 @@ namespace Alquiler_Salas
             }
             else
             {
-               
                 this.Hide();
+                //le paso los valores elegidos hacia el siguiente form
                 FrmAlquilarPart2 fnext = new FrmAlquilarPart2();
                 fnext.lblRoom.Text = txtRoom.Text;
                 fnext.lblDate.Text = dateTimePicker.Value.ToString("dd/MM/yyyy");

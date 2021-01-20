@@ -34,19 +34,10 @@
             this.pedidosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pedidosTableAdapter = new Alquiler_Salas.SalasDB_copiaDataSetTableAdapters.PedidosTableAdapter();
             this.tableAdapterManager = new Alquiler_Salas.SalasDB_copiaDataSetTableAdapters.TableAdapterManager();
-            this.pedidosDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tablaPedidos = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.salasDB_copiaDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pedidosDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaPedidos)).BeginInit();
             this.SuspendLayout();
             // 
             // Btn_back
@@ -84,93 +75,16 @@
             this.tableAdapterManager.SalasTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = Alquiler_Salas.SalasDB_copiaDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // pedidosDataGridView
+            // tablaPedidos
             // 
-            this.pedidosDataGridView.AllowUserToAddRows = false;
-            this.pedidosDataGridView.AllowUserToDeleteRows = false;
-            this.pedidosDataGridView.AutoGenerateColumns = false;
-            this.pedidosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.pedidosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8});
-            this.pedidosDataGridView.DataSource = this.pedidosBindingSource;
-            this.pedidosDataGridView.Location = new System.Drawing.Point(12, 12);
-            this.pedidosDataGridView.Name = "pedidosDataGridView";
-            this.pedidosDataGridView.ReadOnly = true;
-            this.pedidosDataGridView.Size = new System.Drawing.Size(742, 164);
-            this.pedidosDataGridView.TabIndex = 4;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Sala";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Sala";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Fecha";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Fecha";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Hora";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Hora";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "IsAllowed";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "IsAllowed";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "NombreCliente";
-            this.dataGridViewTextBoxColumn5.HeaderText = "NombreCliente";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "ApellidoCliente";
-            this.dataGridViewTextBoxColumn6.HeaderText = "ApellidoCliente";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Dni";
-            this.dataGridViewTextBoxColumn7.HeaderText = "Dni";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "Telefono";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Telefono";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.tablaPedidos.AllowUserToAddRows = false;
+            this.tablaPedidos.AllowUserToDeleteRows = false;
+            this.tablaPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaPedidos.Location = new System.Drawing.Point(12, 12);
+            this.tablaPedidos.Name = "tablaPedidos";
+            this.tablaPedidos.ReadOnly = true;
+            this.tablaPedidos.Size = new System.Drawing.Size(784, 272);
+            this.tablaPedidos.TabIndex = 4;
             // 
             // FrmPedidos
             // 
@@ -178,14 +92,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkMagenta;
             this.ClientSize = new System.Drawing.Size(808, 458);
-            this.Controls.Add(this.pedidosDataGridView);
+            this.Controls.Add(this.tablaPedidos);
             this.Controls.Add(this.Btn_back);
             this.Name = "FrmPedidos";
             this.Text = "Salas Pedidas";
             this.Load += new System.EventHandler(this.FrmPedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.salasDB_copiaDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pedidosDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaPedidos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -197,15 +111,7 @@
         private System.Windows.Forms.BindingSource pedidosBindingSource;
         private SalasDB_copiaDataSetTableAdapters.PedidosTableAdapter pedidosTableAdapter;
         private SalasDB_copiaDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView pedidosDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridView tablaPedidos;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
     }
 }

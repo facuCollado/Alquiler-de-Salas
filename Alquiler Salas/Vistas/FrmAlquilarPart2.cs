@@ -33,17 +33,6 @@ namespace Alquiler_Salas
             this.salasTableAdapter.Fill(this.salasDB_copiaDataSet.Salas);
             // TODO: esta línea de código carga datos en la tabla 'salasDB_copiaDataSet.Salas_Pedidas' Puede moverla o quitarla según sea necesario.
             this.salas_PedidasTableAdapter.Fill(this.salasDB_copiaDataSet.Salas_Pedidas);
-            bool estaConectado = false;
-            try
-            {
-                con.Open();
-                estaConectado = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("No se pudo conectar: \n" + ex);
-                estaConectado = false;
-            }
 
         }
 
@@ -70,48 +59,48 @@ namespace Alquiler_Salas
          {
              MessageBox.Show("No pueden haber campos vacios!");
          }
-         else
-         {
-             Boolean isAllowed = false;
-             //Hago la insercion
-             String strinsert = "INSERT into Pedidos (Sala, Fecha, Hora, IsAllowed, NombreCliente, ApellidoCliente, Dni, Telefono)" +
-                 "Values(@room, @date, @time, @allowed, @name, @lastname, @dni, @tel)";
-             OleDbCommand cmd = new OleDbCommand(strinsert, con);
-             //Establecemos los parámetros que se utilizarán en el comando Insert
-             cmd.Parameters.AddWithValue("room", room);
-             cmd.Parameters.AddWithValue("date", date);
-             cmd.Parameters.AddWithValue("time", time);
-             cmd.Parameters.AddWithValue("allowed", isAllowed);
-             cmd.Parameters.AddWithValue("name", name);
-             cmd.Parameters.AddWithValue("lastname", last_name);
-             cmd.Parameters.AddWithValue("dni", dni);
-             cmd.Parameters.AddWithValue("tel", tel);
-
-             try
+             else
              {
-                 cmd.ExecuteNonQuery(); //Ejecutamos el query
-                 MessageBox.Show("Sala reservada!");
+                 con.Open();
+                 //Hago la insercion
+                 String strinsert = "INSERT into Pedidos (Sala, Fecha, Hora, NombreCliente, ApellidoCliente, Dni, Telefono)" +
+                     "Values(@room, @date, @time, @name, @lastname, @dni, @tel)";
+                 OleDbCommand cmd = new OleDbCommand(strinsert, con);
+                 //Establecemos los parámetros que se utilizarán en el comando Insert
+                 cmd.Parameters.AddWithValue("room", room);
+                 cmd.Parameters.AddWithValue("date", date);
+                 cmd.Parameters.AddWithValue("time", time);
+                 cmd.Parameters.AddWithValue("name", name);
+                 cmd.Parameters.AddWithValue("lastname", last_name);
+                 cmd.Parameters.AddWithValue("dni", dni);
+                 cmd.Parameters.AddWithValue("tel", tel);
 
-             }
-             catch (OleDbException ex)
-             {
-                 MessageBox.Show("Error al insertar los datos: " + ex);
-             }
+                 try
+                 {
+                     cmd.ExecuteNonQuery(); //Ejecutamos el query
+                     MessageBox.Show("Sala reservada!");
 
-             strinsert = "INSERT into Salas_Pedidas (Sala, Fecha) Values(@room, @date)";
-             OleDbCommand cmd2 = new OleDbCommand(strinsert, con);
-             cmd2.Parameters.AddWithValue("room", room);
-             cmd2.Parameters.AddWithValue("date", date);
-             try
-             {
-                 cmd2.ExecuteNonQuery(); //Ejecutamos el query
+                 }
+                 catch (OleDbException ex)
+                 {
+                     MessageBox.Show("Error al insertar los datos: " + ex);
+                 }
 
+                 String strinsert2 = "INSERT into Salas_Pedidas (Sala, Fecha) Values(@room, @date)";
+                 OleDbCommand cmd2 = new OleDbCommand(strinsert2, con);
+                 cmd2.Parameters.AddWithValue("room", room);
+                 cmd2.Parameters.AddWithValue("date", date);
+                 try
+                 {
+                     cmd2.ExecuteNonQuery(); //Ejecutamos el query
+
+                 }
+                 catch (OleDbException ex)
+                 {
+                     MessageBox.Show("Error al insertar los datos: " + ex);
+                 }
+                 con.Close();
              }
-             catch (OleDbException ex)
-             {
-                 MessageBox.Show("Error al insertar los datos: " + ex);
-             }
-         }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

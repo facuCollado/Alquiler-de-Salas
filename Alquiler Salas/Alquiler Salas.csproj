@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Pedidos.cs" />
+    <Compile Include="Clases\Salas.cs" />
+    <Compile Include="Clases\Salas_Pedidas.cs" />
     <Compile Include="Vistas\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
