@@ -28,6 +28,7 @@ namespace Alquiler_Salas
             delete_yesterdayRooms();
             loadTablaSalas();
             loadTablaSalasPedidas();
+            dateTimePicker.MinDate = DateTime.Now;
 
         }
 
@@ -46,7 +47,7 @@ namespace Alquiler_Salas
                 while (r.Read()) //recorro todas las filas
                 {
                     Salas s = new Salas();
-                    s.Id = r.GetInt32(0);
+                    //s.Id = r.GetInt32(0);
                     s.Sala = r.GetString(1);
                     s.Capacidad = r.GetInt32(2);
 
@@ -79,7 +80,7 @@ namespace Alquiler_Salas
                 while (r.Read()) //recorro todas las filas
                 {
                     Salas_Pedidas sp = new Salas_Pedidas();
-                    sp.Id = r.GetInt32(0);
+                    //sp.Id = r.GetInt32(0);
                     sp.Sala = r.GetString(1);
                     sp.Fecha = r.GetString(2);
 
@@ -107,9 +108,7 @@ namespace Alquiler_Salas
             tablaSalas.EditMode = DataGridViewEditMode.EditProgrammatically;
             tablaSalas.MultiSelect = false;
             tablaSalas.AutoResizeColumns();
-            tablaSalas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-            tablaSalas.Columns.Add("id", "ID");
+            //tablaSalas.Columns.Add("id", "ID");
             tablaSalas.Columns.Add("sala", "Sala");
             tablaSalas.Columns.Add("capacidad", "Capacidad");
         }
@@ -119,12 +118,16 @@ namespace Alquiler_Salas
             for (int i = 0; i < salas.Count(); i++)
             {
                 tablaSalas.Rows.Add
-                (salas[i].Id,
-                salas[i].Sala,
+                (salas[i].Sala,
                 salas[i].Capacidad
                     );
             }
             salas.Clear();
+
+            tablaSalas.Columns[0].FillWeight = 100;
+            tablaSalas.Columns[1].FillWeight = 100;
+            tablaSalas.BackgroundColor = Color.MediumOrchid;
+            tablaSalas.GridColor = Color.MediumOrchid;
         }
 
         public void startTablaSalasPedidas()
@@ -138,9 +141,7 @@ namespace Alquiler_Salas
             tablaSalasPedidas.EditMode = DataGridViewEditMode.EditProgrammatically;
             tablaSalasPedidas.MultiSelect = false;
             tablaSalasPedidas.AutoResizeColumns();
-            tablaSalasPedidas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-            tablaSalasPedidas.Columns.Add("id", "ID");
+            //tablaSalasPedidas.Columns.Add("id", "ID");
             tablaSalasPedidas.Columns.Add("sala", "Sala");
             tablaSalasPedidas.Columns.Add("fecha", "Fecha");
         }
@@ -150,12 +151,16 @@ namespace Alquiler_Salas
             for (int i = 0; i < salas_pedidas.Count(); i++)
             {
                 tablaSalasPedidas.Rows.Add
-                (salas_pedidas[i].Id,
-                salas_pedidas[i].Sala,
+                (salas_pedidas[i].Sala,
                 salas_pedidas[i].Fecha
                     );
             }
             salas_pedidas.Clear();
+
+            tablaSalasPedidas.Columns[0].FillWeight = 100;
+            tablaSalasPedidas.Columns[1].FillWeight = 100;
+            tablaSalasPedidas.BackgroundColor = Color.MediumOrchid;
+            tablaSalasPedidas.GridColor = Color.MediumOrchid;
         }
         private void Btn_back_Click(object sender, EventArgs e)
         {
@@ -197,7 +202,7 @@ namespace Alquiler_Salas
         private void salasDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //selecciono una fila para llenar el txt de la sala que sala es elegida
-            txtRoom.Text = tablaSalas.CurrentRow.Cells[1].Value.ToString();
+            txtRoom.Text = tablaSalas.CurrentRow.Cells[0].Value.ToString();
         }
 
         private void btnConsult_Click(object sender, EventArgs e)
@@ -212,12 +217,12 @@ namespace Alquiler_Salas
                 consulta = true;
                 String sala = txtRoom.Text;
                 String queryDate = dateTimePicker.Value.ToString("dd/MM/yyyy");
-                String parseDate = DateTime.Parse(queryDate).ToString();
+               // String parseDate = DateTime.Parse(queryDate).ToString();
 
                 int disponible = 0; //bool para saber si esta completamente libre esa sala
                 foreach (DataGridViewRow row in tablaSalasPedidas.Rows)
                 {
-                    if (Convert.ToString(row.Cells[1].Value) == sala && (Convert.ToString(row.Cells[2].Value)) == parseDate)
+                    if (Convert.ToString(row.Cells[0].Value) == sala && (Convert.ToString(row.Cells[1].Value)) == queryDate)
                     {
                         MessageBox.Show("Sala reservada en el día elegido.");
                         row.DefaultCellStyle.BackColor = Color.Red;
@@ -228,7 +233,7 @@ namespace Alquiler_Salas
                     else
                     {
                         disponible += 1;
-                        row.DefaultCellStyle.BackColor = Color.MediumOrchid;
+                        row.DefaultCellStyle.BackColor = Color.White;
                     }
                 }
                 if (disponible != 0)

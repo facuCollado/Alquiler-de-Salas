@@ -38,22 +38,22 @@
             this.cbTime = new System.Windows.Forms.ComboBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tablaSalasPedidas = new System.Windows.Forms.DataGridView();
-            this.salas_PedidasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.salasDB_copiaDataSet = new Alquiler_Salas.SalasDB_copiaDataSet();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_continue = new System.Windows.Forms.Button();
             this.tablaSalas = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.salas_PedidasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.salasDB_copiaDataSet = new Alquiler_Salas.SalasDB_copiaDataSet();
             this.salasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.salas_PedidasTableAdapter = new Alquiler_Salas.SalasDB_copiaDataSetTableAdapters.Salas_PedidasTableAdapter();
             this.tableAdapterManager = new Alquiler_Salas.SalasDB_copiaDataSetTableAdapters.TableAdapterManager();
             this.salasTableAdapter = new Alquiler_Salas.SalasDB_copiaDataSetTableAdapters.SalasTableAdapter();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaSalasPedidas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaSalas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salas_PedidasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salasDB_copiaDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaSalas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,9 +63,9 @@
             this.Btn_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn_back.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_back.ForeColor = System.Drawing.SystemColors.Info;
-            this.Btn_back.Location = new System.Drawing.Point(770, 288);
+            this.Btn_back.Location = new System.Drawing.Point(785, 352);
             this.Btn_back.Name = "Btn_back";
-            this.Btn_back.Size = new System.Drawing.Size(115, 40);
+            this.Btn_back.Size = new System.Drawing.Size(105, 40);
             this.Btn_back.TabIndex = 3;
             this.Btn_back.Text = "Volver";
             this.Btn_back.UseVisualStyleBackColor = false;
@@ -77,9 +77,9 @@
             this.btnConsult.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConsult.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConsult.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnConsult.Location = new System.Drawing.Point(724, 190);
+            this.btnConsult.Location = new System.Drawing.Point(718, 192);
             this.btnConsult.Name = "btnConsult";
-            this.btnConsult.Size = new System.Drawing.Size(75, 28);
+            this.btnConsult.Size = new System.Drawing.Size(78, 34);
             this.btnConsult.TabIndex = 38;
             this.btnConsult.Text = "Consultar";
             this.btnConsult.UseVisualStyleBackColor = false;
@@ -146,10 +146,14 @@
             // 
             // dateTimePicker
             // 
+            this.dateTimePicker.CalendarFont = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker.Location = new System.Drawing.Point(685, 56);
+            this.dateTimePicker.MinDate = new System.DateTime(2021, 1, 21, 19, 1, 1, 0);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker.TabIndex = 41;
+            this.dateTimePicker.Value = new System.DateTime(2021, 1, 21, 19, 1, 1, 0);
             // 
             // tablaSalasPedidas
             // 
@@ -157,6 +161,7 @@
             this.tablaSalasPedidas.AllowUserToDeleteRows = false;
             this.tablaSalasPedidas.AllowUserToResizeColumns = false;
             this.tablaSalasPedidas.AllowUserToResizeRows = false;
+            this.tablaSalasPedidas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tablaSalasPedidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaSalasPedidas.GridColor = System.Drawing.Color.DarkViolet;
             this.tablaSalasPedidas.Location = new System.Drawing.Point(30, 65);
@@ -165,16 +170,6 @@
             this.tablaSalasPedidas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tablaSalasPedidas.Size = new System.Drawing.Size(243, 267);
             this.tablaSalasPedidas.TabIndex = 41;
-            // 
-            // salas_PedidasBindingSource
-            // 
-            this.salas_PedidasBindingSource.DataMember = "Salas_Pedidas";
-            this.salas_PedidasBindingSource.DataSource = this.salasDB_copiaDataSet;
-            // 
-            // salasDB_copiaDataSet
-            // 
-            this.salasDB_copiaDataSet.DataSetName = "SalasDB_copiaDataSet";
-            this.salasDB_copiaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label4
             // 
@@ -202,7 +197,7 @@
             this.btn_continue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_continue.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_continue.ForeColor = System.Drawing.SystemColors.Info;
-            this.btn_continue.Location = new System.Drawing.Point(639, 288);
+            this.btn_continue.Location = new System.Drawing.Point(700, 271);
             this.btn_continue.Name = "btn_continue";
             this.btn_continue.Size = new System.Drawing.Size(115, 40);
             this.btn_continue.TabIndex = 44;
@@ -216,6 +211,7 @@
             this.tablaSalas.AllowUserToDeleteRows = false;
             this.tablaSalas.AllowUserToResizeColumns = false;
             this.tablaSalas.AllowUserToResizeRows = false;
+            this.tablaSalas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tablaSalas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaSalas.GridColor = System.Drawing.Color.DarkViolet;
             this.tablaSalas.Location = new System.Drawing.Point(350, 65);
@@ -225,27 +221,6 @@
             this.tablaSalas.Size = new System.Drawing.Size(246, 267);
             this.tablaSalas.TabIndex = 39;
             this.tablaSalas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salasDataGridView_CellClick);
-            // 
-            // salasBindingSource
-            // 
-            this.salasBindingSource.DataMember = "Salas";
-            this.salasBindingSource.DataSource = this.salasDB_copiaDataSet;
-            // 
-            // salas_PedidasTableAdapter
-            // 
-            this.salas_PedidasTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.PedidosTableAdapter = null;
-            this.tableAdapterManager.Salas_PedidasTableAdapter = this.salas_PedidasTableAdapter;
-            this.tableAdapterManager.SalasTableAdapter = this.salasTableAdapter;
-            this.tableAdapterManager.UpdateOrder = Alquiler_Salas.SalasDB_copiaDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // salasTableAdapter
-            // 
-            this.salasTableAdapter.ClearBeforeFill = true;
             // 
             // label6
             // 
@@ -271,6 +246,37 @@
             this.label7.Text = "Esto para poder descontaminar y tomar las medidas necesarias para que\r\nlos recint" +
     "os esten totalmente sanitizados.";
             // 
+            // salas_PedidasBindingSource
+            // 
+            this.salas_PedidasBindingSource.DataMember = "Salas_Pedidas";
+            this.salas_PedidasBindingSource.DataSource = this.salasDB_copiaDataSet;
+            // 
+            // salasDB_copiaDataSet
+            // 
+            this.salasDB_copiaDataSet.DataSetName = "SalasDB_copiaDataSet";
+            this.salasDB_copiaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // salasBindingSource
+            // 
+            this.salasBindingSource.DataMember = "Salas";
+            this.salasBindingSource.DataSource = this.salasDB_copiaDataSet;
+            // 
+            // salas_PedidasTableAdapter
+            // 
+            this.salas_PedidasTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.PedidosTableAdapter = null;
+            this.tableAdapterManager.Salas_PedidasTableAdapter = this.salas_PedidasTableAdapter;
+            this.tableAdapterManager.SalasTableAdapter = this.salasTableAdapter;
+            this.tableAdapterManager.UpdateOrder = Alquiler_Salas.SalasDB_copiaDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // salasTableAdapter
+            // 
+            this.salasTableAdapter.ClearBeforeFill = true;
+            // 
             // FrmAlquilar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -292,13 +298,16 @@
             this.Controls.Add(this.txtRoom);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Btn_back);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(927, 452);
+            this.MinimumSize = new System.Drawing.Size(927, 452);
             this.Name = "FrmAlquilar";
             this.Text = "Alquiler de Salas";
             this.Load += new System.EventHandler(this.FrmAlquilar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaSalasPedidas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaSalas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.salas_PedidasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.salasDB_copiaDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaSalas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.salasBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

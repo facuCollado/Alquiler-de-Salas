@@ -14,7 +14,7 @@ namespace Alquiler_Salas.Clases
         private string hora;
         private string nombrecliente;
         private string apellidocliente;
-        private string dni;
+        private int dni;
         private int telefono;
 
         public int Id { get => id; set => id = value; }
@@ -23,7 +23,7 @@ namespace Alquiler_Salas.Clases
         public string Fecha { get => fecha; set => fecha= value; }
         public string NombreCliente { get => nombrecliente; set => nombrecliente = value; }
         public string ApellidoCliente { get => apellidocliente; set => apellidocliente = value; }
-        public string Dni { get => dni; set => dni = value; }
+        public int Dni { get => dni; set => dni = value; }
         public int Telefono { get => telefono; set => telefono = value; }
     }
 }

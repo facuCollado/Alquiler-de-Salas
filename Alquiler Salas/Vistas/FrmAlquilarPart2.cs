@@ -46,24 +46,36 @@ namespace Alquiler_Salas
 
         private void btn_accept_Click(object sender, EventArgs e)
         {
-         String name = txtName.Text;
-         String last_name = txtLastName.Text;
-         String dni = txtDNI.Text;
-         String tel = txtPhone.Text;
-         String room = lblRoom.Text;
-         String date = lblDate.Text;
-         String time = lblTime.Text;
+            int dni = 0;
+            int tel = 0;
+            try
+            {
+                 dni = Convert.ToInt32(txtDNI.Text);
+                 tel = Convert.ToInt32(txtPhone.Text);
+            }
+            catch
+            {
+                lblAlert.Text = "Por favor, ingrese datos válidos.";
+                
 
-         if (String.IsNullOrEmpty(name) || String.IsNullOrEmpty(last_name) || String.IsNullOrEmpty(dni) || String.IsNullOrEmpty(tel) ||
-             String.IsNullOrEmpty(room) || String.IsNullOrEmpty(date) || String.IsNullOrEmpty(time))
-         {
-             MessageBox.Show("No pueden haber campos vacios!");
-         }
+            }
+            if (String.IsNullOrEmpty(txtName.Text) || String.IsNullOrEmpty(txtLastName.Text) || dni == 0 || tel == 0 ||
+             String.IsNullOrEmpty(lblRoom.Text) || String.IsNullOrEmpty(lblDate.Text) || String.IsNullOrEmpty(lblTime.Text))
+             {
+                lblAlert.Text = "Por favor, ingrese datos válidos.";
+            }
              else
              {
                  con.Open();
-                 //Hago la insercion
-                 String strinsert = "INSERT into Pedidos (Sala, Fecha, Hora, NombreCliente, ApellidoCliente, Dni, Telefono)" +
+                lblAlert.Text = "";
+                String name = txtName.Text;
+                String last_name = txtLastName.Text;
+                String room = lblRoom.Text;
+                String date = lblDate.Text;
+                String time = lblTime.Text;
+ 
+                //Hago la insercion
+                String strinsert = "INSERT into Pedidos (Sala, Fecha, Hora, NombreCliente, ApellidoCliente, Dni, Telefono)" +
                      "Values(@room, @date, @time, @name, @lastname, @dni, @tel)";
                  OleDbCommand cmd = new OleDbCommand(strinsert, con);
                  //Establecemos los parámetros que se utilizarán en el comando Insert
@@ -105,7 +117,7 @@ namespace Alquiler_Salas
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Seguro que desea cancelar?",
+            if (MessageBox.Show("¿Seguro que volver ir al menu?",
                              " ",MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
                 //si la respuesta es SI lo mando al Menu

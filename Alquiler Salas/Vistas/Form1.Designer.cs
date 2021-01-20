@@ -94,6 +94,10 @@
             this.Controls.Add(this.Btn_pedidos);
             this.Controls.Add(this.Btn_alquilar);
             this.Controls.Add(this.label1);
+            this.Location = new System.Drawing.Point(50, 50);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(754, 470);
+            this.MinimumSize = new System.Drawing.Size(754, 470);
             this.Name = "Form1";
             this.Text = "Sistema de Alquiler de Salas";
             this.ResumeLayout(false);

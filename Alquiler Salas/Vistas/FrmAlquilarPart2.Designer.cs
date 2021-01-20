@@ -54,6 +54,7 @@
             this.btn_accept = new System.Windows.Forms.Button();
             this.Btn_back = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblAlert = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.salasDB_copiaDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salas_PedidasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salasBindingSource)).BeginInit();
@@ -254,7 +255,7 @@
             this.btn_accept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_accept.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_accept.ForeColor = System.Drawing.SystemColors.Info;
-            this.btn_accept.Location = new System.Drawing.Point(329, 212);
+            this.btn_accept.Location = new System.Drawing.Point(329, 232);
             this.btn_accept.Name = "btn_accept";
             this.btn_accept.Size = new System.Drawing.Size(115, 40);
             this.btn_accept.TabIndex = 52;
@@ -268,7 +269,7 @@
             this.Btn_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn_back.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_back.ForeColor = System.Drawing.SystemColors.Info;
-            this.Btn_back.Location = new System.Drawing.Point(30, 212);
+            this.Btn_back.Location = new System.Drawing.Point(30, 232);
             this.Btn_back.Name = "Btn_back";
             this.Btn_back.Size = new System.Drawing.Size(115, 40);
             this.Btn_back.TabIndex = 53;
@@ -282,7 +283,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnCancel.Location = new System.Drawing.Point(605, 212);
+            this.btnCancel.Location = new System.Drawing.Point(605, 232);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(115, 40);
             this.btnCancel.TabIndex = 54;
@@ -290,12 +291,23 @@
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // lblAlert
+            // 
+            this.lblAlert.AutoSize = true;
+            this.lblAlert.Font = new System.Drawing.Font("Nirmala UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlert.ForeColor = System.Drawing.Color.Red;
+            this.lblAlert.Location = new System.Drawing.Point(358, 174);
+            this.lblAlert.Name = "lblAlert";
+            this.lblAlert.Size = new System.Drawing.Size(0, 30);
+            this.lblAlert.TabIndex = 55;
+            // 
             // FrmAlquilarPart2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkMagenta;
-            this.ClientSize = new System.Drawing.Size(762, 325);
+            this.ClientSize = new System.Drawing.Size(758, 332);
+            this.Controls.Add(this.lblAlert);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.Btn_back);
             this.Controls.Add(this.btn_accept);
@@ -315,6 +327,9 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(774, 371);
+            this.MinimumSize = new System.Drawing.Size(774, 371);
             this.Name = "FrmAlquilarPart2";
             this.Text = "Alquiler de Salas";
             this.Load += new System.EventHandler(this.FrmAlquilarPart2_Load);
@@ -353,5 +368,6 @@
         public System.Windows.Forms.Label lblDate;
         public System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblAlert;
     }
 }

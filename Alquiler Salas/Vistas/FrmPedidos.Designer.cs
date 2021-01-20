@@ -45,7 +45,7 @@
             this.Btn_back.BackColor = System.Drawing.Color.Indigo;
             this.Btn_back.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold);
             this.Btn_back.ForeColor = System.Drawing.SystemColors.Info;
-            this.Btn_back.Location = new System.Drawing.Point(681, 403);
+            this.Btn_back.Location = new System.Drawing.Point(696, 351);
             this.Btn_back.Name = "Btn_back";
             this.Btn_back.Size = new System.Drawing.Size(100, 40);
             this.Btn_back.TabIndex = 4;
@@ -79,11 +79,12 @@
             // 
             this.tablaPedidos.AllowUserToAddRows = false;
             this.tablaPedidos.AllowUserToDeleteRows = false;
+            this.tablaPedidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tablaPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaPedidos.Location = new System.Drawing.Point(12, 12);
             this.tablaPedidos.Name = "tablaPedidos";
             this.tablaPedidos.ReadOnly = true;
-            this.tablaPedidos.Size = new System.Drawing.Size(784, 272);
+            this.tablaPedidos.Size = new System.Drawing.Size(784, 292);
             this.tablaPedidos.TabIndex = 4;
             // 
             // FrmPedidos
@@ -91,9 +92,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkMagenta;
-            this.ClientSize = new System.Drawing.Size(808, 458);
+            this.ClientSize = new System.Drawing.Size(808, 413);
             this.Controls.Add(this.tablaPedidos);
             this.Controls.Add(this.Btn_back);
+            this.Location = new System.Drawing.Point(50, 50);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(824, 452);
+            this.MinimumSize = new System.Drawing.Size(824, 452);
             this.Name = "FrmPedidos";
             this.Text = "Salas Pedidas";
             this.Load += new System.EventHandler(this.FrmPedidos_Load);

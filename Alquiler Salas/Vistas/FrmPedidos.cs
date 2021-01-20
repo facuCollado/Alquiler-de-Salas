@@ -43,7 +43,7 @@ namespace Alquiler_Salas
                     c.Hora = r.GetString(3);
                     c.NombreCliente = r.GetString(4);
                     c.ApellidoCliente = r.GetString(5);
-                    c.Dni = r.GetString(6);
+                    c.Dni = r.GetInt32(6);
                     c.Telefono = r.GetInt32(7);
 
                     pedidos.Add(c); //le agrego los objetos a la List
@@ -71,7 +71,7 @@ namespace Alquiler_Salas
             tablaPedidos.EditMode = DataGridViewEditMode.EditProgrammatically;
             tablaPedidos.MultiSelect = false;
             tablaPedidos.AutoResizeColumns();
-            tablaPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //tablaPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             tablaPedidos.Columns.Add("id","ID");
             tablaPedidos.Columns.Add("sala", "Sala");
@@ -99,6 +99,16 @@ namespace Alquiler_Salas
                     );
             }
             pedidos.Clear();
+            tablaPedidos.Columns[0].FillWeight = 50;
+            tablaPedidos.Columns[2].FillWeight = 100;
+            tablaPedidos.Columns[3].FillWeight = 100;
+            tablaPedidos.Columns[4].FillWeight = 100;
+            tablaPedidos.Columns[5].FillWeight = 100;
+            tablaPedidos.Columns[6].FillWeight = 100;
+            tablaPedidos.Columns[7].FillWeight = 100;
+
+            tablaPedidos.GridColor = Color.MediumOrchid;
+
         }
 
         public void updateTablaPedidos()
